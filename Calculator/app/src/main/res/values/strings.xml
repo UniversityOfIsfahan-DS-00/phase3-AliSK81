@@ -26,4 +26,8 @@
     <string name="cos">cos</string>
     <string name="sin">sin</string>
     <string name="tan">tan</string>
+    <string name="err">Error</string>
+    <string name="steps">Steps</string>
+    <string name="back">Back</string>
+
 </resources>

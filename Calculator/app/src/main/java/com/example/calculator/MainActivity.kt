@@ -1,14 +1,16 @@
 package com.example.calculator
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
-import kotlin.math.abs
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,12 +22,17 @@ class MainActivity : AppCompatActivity() {
         if (this.supportActionBar != null)
             this.supportActionBar!!.hide()
 
+        // calculator
+        val calc = Calculator()
+
         // view settings
-        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.black)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         window.decorView.layoutDirection = View.LAYOUT_DIRECTION_LTR
 
+        // set English locate
+        val locale = Locale("en")
+        Locale.setDefault(locale)
+        resources.configuration.setLocale(locale)
 
         // components
 
@@ -69,8 +76,9 @@ class MainActivity : AppCompatActivity() {
         val btnEqual = findViewById<Button>(R.id.btnEqual)
         val btnAC = findViewById<Button>(R.id.btnAC)
         val btnDel = findViewById<Button>(R.id.btnDel)
+        val btnSteps = findViewById<View>(R.id.btnSteps)
 
-        var cur = ""
+        btnSteps.visibility = INVISIBLE
 
         // disable keyboard
         input.showSoftInputOnFocus = false
@@ -81,30 +89,29 @@ class MainActivity : AppCompatActivity() {
 
         (digits + operators + symbols).forEach { btn ->
             btn.setOnClickListener {
-                cur += btn.text
-                input.setText(cur)
+                input.append(("${btn.text}"))
             }
         }
 
         angles.forEach { digit ->
             digit.setOnClickListener {
-                cur += (digit.text.toString() + "(")
-                input.setText(cur)
+                input.append(("${digit.text}("))
             }
         }
 
         btnAC.setOnClickListener {
-            cur = ""
-            input.setText(cur)
-            result.setText(cur)
+            input.text.clear()
+            result.text.clear()
         }
 
         btnDel.setOnClickListener {
+            var cur = input.text.toString()
+
             if (cur.isNotEmpty()) {
                 var angle = false
                 if (cur.length > 3) {
                     val tmp = cur.substring(cur.length - 4, cur.length)
-                    angle = arrayOf("sin(", "cos(", "tan(").contains(tmp)
+                    angle = tmp in arrayOf("sin(", "cos(", "tan(")
                 }
                 cur = cur.substring(0, cur.length - if (angle) 4 else 1)
                 input.setText(cur)
@@ -112,29 +119,35 @@ class MainActivity : AppCompatActivity() {
         }
 
         input.doAfterTextChanged {
+            var cur = input.text.toString()
 
-            val r = Runnable {
+            if (cur.isEmpty()) {
+                result.setText("")
+                btnSteps.visibility = INVISIBLE
+
+            } else {
+
                 cur = input.text.toString()
-
                 result.textSize = 22F
                 input.textSize = 30F
 
                 try {
-                    if (cur.isEmpty()) {
-                        result.setText("")
+                    val ans = calc.calculate(cur, false) as Double
+                    result.setText(("= " + calc.format(ans)))
+                    btnSteps.visibility = VISIBLE
 
-                    } else {
-                        val ans = Calculator().calculate(cur)
-                        result.setText(("= " + format(ans)))
-                    }
-                } catch (ex: RuntimeException) {
+
+                } catch (ex: ArithmeticException) {
+                    result.setText(ex.message)
+                    btnSteps.visibility = INVISIBLE
+
+                } catch (ex2: RuntimeException) {
                     result.setText("")
+                    btnSteps.visibility = INVISIBLE
                 }
+
+                input.setSelection(input.length())
             }
-
-            input.setSelection(input.length())
-
-            r.run()
         }
 
         input.setOnClickListener {
@@ -144,33 +157,27 @@ class MainActivity : AppCompatActivity() {
 
         btnEqual.setOnClickListener {
 
+            val cur = input.text.toString()
             result.textSize = 30F
             input.textSize = 22F
 
-            try {
-                if (cur.isNotEmpty()) {
-                    val ans = Calculator().calculate(cur)
-                    result.setText(("= " + format(ans)))
+            if (cur.isNotEmpty()) {
+                try {
+                    val ans = calc.calculate(cur, false) as Double
+                    result.setText(("= " + calc.format(ans)))
+                    btnSteps.visibility = VISIBLE
+
+                } catch (ex: RuntimeException) {
+                    result.setText(ex.message)
+                    btnSteps.visibility = INVISIBLE
                 }
-            } catch (ex: RuntimeException) {
-                result.setText(ex.message)
             }
         }
 
-
-//        println(Calculator().calculate("-(-(2^3))/4+1"))
-    }
-
-    // format result
-    private fun format(ans: Double): String {
-        if (ans == 0.0) return "0"
-
-        val f = abs(ans) - abs(ans.toLong())
-
-        if (f in 10e-8..1.0 || abs(ans) in 1.0..10e8) {
-            return "%.9f".format(ans).replace("\\.?0+$".toRegex(), "")
+        btnSteps.setOnClickListener {
+            val i = Intent(this, StepsActivity::class.java)
+            i.putExtra("input", input.text.toString())
+            startActivity(i)
         }
-        return "%.8E".format(ans).format(ans).replace("\\.?0+(\\D)".toRegex(), "$1")
     }
-
 }
