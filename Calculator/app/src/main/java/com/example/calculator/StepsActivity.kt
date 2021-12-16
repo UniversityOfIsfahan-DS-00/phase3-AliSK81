@@ -6,10 +6,12 @@ import android.text.SpannableStringBuilder
 import android.text.method.ScrollingMovementMethod
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.bold
 import androidx.core.text.color
 import androidx.core.text.italic
+import androidx.core.text.underline
 import java.util.*
 
 
@@ -19,11 +21,6 @@ class StepsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_steps)
 
         val steps = findViewById<TextView>(R.id.steps)
-        val btnBack = findViewById<TextView>(R.id.btnBack)
-
-
-        if (this.supportActionBar != null)
-            this.supportActionBar!!.hide()
 
         steps.showSoftInputOnFocus = false
 
@@ -37,10 +34,6 @@ class StepsActivity : AppCompatActivity() {
 
         // scroll steps
         steps.movementMethod = ScrollingMovementMethod()
-
-        btnBack.setOnClickListener {
-            this.finish()
-        }
 
         val input = intent.getStringExtra("input") as String
 
@@ -62,17 +55,18 @@ class StepsActivity : AppCompatActivity() {
 
                 steps.text = ""
 
-                steps.append(formatTitle("> Input:"))
-                steps.append("$inp\n")
+                steps.append(formatTitle("Input"))
+                steps.append(" $inp\n")
 
-                steps.append(formatTitle("> Solution:"))
-                steps.append("$stp\n")
+                steps.append(formatTitle("Solution"))
+                steps.append(" $stp\n")
 
-                steps.append(formatTitle("> Result:"))
-                steps.append("$res\n")
+                steps.append(formatTitle("Result"))
+                steps.append(" $res\n")
 
             } catch (ex: RuntimeException) {
-                steps.text = ex.message
+                Toast.makeText(this, "Check Input", Toast.LENGTH_SHORT).show()
+                finish()
             }
 
         }.run()
@@ -81,6 +75,9 @@ class StepsActivity : AppCompatActivity() {
     private fun formatTitle(s: String): SpannableStringBuilder {
 
         return SpannableStringBuilder()
-            .color(Color.YELLOW) { italic { bold { append("\n$s\n\n") } } }
+            .color(
+                Color.argb(255, 255, 215, 0)
+            )
+            { underline { italic { bold { append("\n$s\n\n") } } } }
     }
 }

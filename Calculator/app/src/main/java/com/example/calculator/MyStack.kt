@@ -8,14 +8,14 @@ class MyStack<T>(private val maxSize: Int) {
         data[++top] = `val`
     }
 
-    fun pop(): T? {
+    fun pop(): T {
         val temp = data[top]
         data[top--] = null
-        return temp
+        return temp!!
     }
 
-    fun peek(): T? {
-        return data[top]
+    fun peek(): T {
+        return data[top]!!
     }
 
     fun isEmpty(): Boolean {

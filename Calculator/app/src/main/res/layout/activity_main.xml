@@ -7,56 +7,47 @@
     android:background="@color/dark1"
     tools:context=".MainActivity">
 
+    <fragment
+        android:id="@+id/nav_host"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/mobile_navigation" />
 
     <Button
         android:id="@+id/btnCos"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="12dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/cos"
         android:textAllCaps="false"
-        android:textColor="#ffffff"
         android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btnCloseP"
         app:layout_constraintEnd_toStartOf="@+id/btnTan"
-
         app:layout_constraintStart_toEndOf="@+id/btnSin"
         app:layout_constraintTop_toTopOf="@+id/gl" />
 
     <Button
         android:id="@+id/btnCloseP"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="12dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/closeP"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btn9"
         app:layout_constraintEnd_toStartOf="@+id/btnPow"
-
         app:layout_constraintStart_toEndOf="@+id/btnOpenP"
         app:layout_constraintTop_toBottomOf="@+id/btnCos" />
 
     <Button
         android:id="@+id/btnTan"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/tan"
         android:textAllCaps="false"
-        android:textColor="#ffffff"
         android:textSize="20sp"
-
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btnPow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnCos"
@@ -64,33 +55,21 @@
 
     <Button
         android:id="@+id/btnOpenP"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="12dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/openP"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btn8"
         app:layout_constraintEnd_toStartOf="@+id/btnCloseP"
-
         app:layout_constraintStart_toEndOf="@+id/btnPI"
         app:layout_constraintTop_toBottomOf="@+id/btnSin" />
 
     <Button
         android:id="@+id/btnSin"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="12dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/sin"
         android:textAllCaps="false"
-        android:textColor="#ffffff"
         android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btnOpenP"
         app:layout_constraintEnd_toStartOf="@+id/btnCos"
         app:layout_constraintStart_toEndOf="@+id/btnAC"
@@ -101,7 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:autofillHints="no"
@@ -117,7 +96,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnSteps"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
 
@@ -143,15 +122,10 @@
 
     <Button
         android:id="@+id/btnPI"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="16dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/PI"
         android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btn7"
         app:layout_constraintEnd_toStartOf="@+id/btnOpenP"
         app:layout_constraintStart_toStartOf="parent"
@@ -159,15 +133,9 @@
 
     <Button
         android:id="@+id/btn7"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="16dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/_7"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btn4"
         app:layout_constraintEnd_toStartOf="@+id/btn8"
         app:layout_constraintStart_toStartOf="parent"
@@ -175,15 +143,9 @@
 
     <Button
         android:id="@+id/btn4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="16dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/_4"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btn1"
         app:layout_constraintEnd_toStartOf="@+id/btn5"
         app:layout_constraintStart_toStartOf="parent"
@@ -191,15 +153,9 @@
 
     <Button
         android:id="@+id/btn1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="16dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/_1"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btnDot"
         app:layout_constraintEnd_toStartOf="@+id/btn2"
         app:layout_constraintStart_toStartOf="parent"
@@ -207,18 +163,11 @@
 
     <Button
         android:id="@+id/btnDot"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/dot"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
-
         app:layout_constraintEnd_toStartOf="@+id/btn0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn1" />
@@ -259,244 +208,145 @@
 
     <Button
         android:id="@+id/btnPow"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/goldButtons"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/orange1"
         android:text="@string/pow"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btnDiv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnCloseP"
         app:layout_constraintTop_toBottomOf="@+id/btnTan" />
 
     <Button
         android:id="@+id/btn8"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="12dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/_8"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btn5"
         app:layout_constraintEnd_toStartOf="@+id/btn9"
-
         app:layout_constraintStart_toEndOf="@+id/btn7"
         app:layout_constraintTop_toBottomOf="@+id/btnOpenP" />
 
     <Button
         android:id="@+id/btn9"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="12dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/_9"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btn6"
         app:layout_constraintEnd_toStartOf="@+id/btnDiv"
-
         app:layout_constraintStart_toEndOf="@+id/btn8"
         app:layout_constraintTop_toBottomOf="@+id/btnCloseP" />
 
     <Button
         android:id="@+id/btnDiv"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/goldButtons"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/orange1"
         android:text="@string/div"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btnMult"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn9"
         app:layout_constraintTop_toBottomOf="@+id/btnPow" />
 
     <Button
         android:id="@+id/btn5"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="12dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/_5"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btn2"
         app:layout_constraintEnd_toStartOf="@+id/btn6"
-
         app:layout_constraintStart_toEndOf="@+id/btn4"
         app:layout_constraintTop_toBottomOf="@+id/btn8" />
 
     <Button
         android:id="@+id/btn6"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="12dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/_6"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btn3"
         app:layout_constraintEnd_toStartOf="@+id/btnMult"
-
         app:layout_constraintStart_toEndOf="@+id/btn5"
         app:layout_constraintTop_toBottomOf="@+id/btn9" />
 
 
     <Button
         android:id="@+id/btnMult"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/goldButtons"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/orange1"
         android:text="@string/mult"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btnSub"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn6"
         app:layout_constraintTop_toBottomOf="@+id/btnDiv" />
 
     <Button
         android:id="@+id/btn2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="12dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/_2"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btn0"
         app:layout_constraintEnd_toStartOf="@+id/btn3"
-
         app:layout_constraintStart_toEndOf="@+id/btn1"
         app:layout_constraintTop_toBottomOf="@+id/btn5" />
 
     <Button
         android:id="@+id/btn3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="12dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/_3"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btnEqual"
         app:layout_constraintEnd_toStartOf="@+id/btnSub"
-
         app:layout_constraintStart_toEndOf="@+id/btn2"
         app:layout_constraintTop_toBottomOf="@+id/btn6" />
 
     <Button
         android:id="@+id/btnSub"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/goldButtons"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/orange1"
         android:text="@string/sub"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/btnSum"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn3"
         app:layout_constraintTop_toBottomOf="@+id/btnMult" />
 
 
     <Button
         android:id="@+id/btn0"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="12dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/_0"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
-
         app:layout_constraintEnd_toStartOf="@+id/btnEqual"
-
         app:layout_constraintStart_toEndOf="@+id/btnDot"
         app:layout_constraintTop_toBottomOf="@+id/btn2" />
 
     <Button
         android:id="@+id/btnEqual"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/darkButtons"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/dark2"
         android:text="@string/equal"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnSum"
-
         app:layout_constraintStart_toEndOf="@+id/btn0"
         app:layout_constraintTop_toBottomOf="@+id/btn3" />
 
     <Button
         android:id="@+id/btnSum"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/goldButtons"
+
         android:layout_marginStart="12dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/orange1"
         android:text="@string/sum"
-        android:textColor="#ffffff"
-        android:textSize="28sp"
-        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnEqual"
         app:layout_constraintTop_toBottomOf="@+id/btnSub" />
-
-    <Button
-        android:id="@+id/btnSteps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#62348C"
-        android:text="@string/steps"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl"

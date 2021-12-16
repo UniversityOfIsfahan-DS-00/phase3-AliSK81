@@ -1,10 +1,51 @@
 package com.example.calculator
 
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.*
 
 class Calculator {
 
     private var history = ArrayList<String>()
+
+
+    fun toExpressionTree(infix: String): MyTree<String> {
+
+        val postfix = toPostfix(infix)
+        val trees = MyStack<MyTree<String>>(postfix.size)
+
+        for (op in postfix) {
+            val tree = MyTree(op)
+
+            if (!isNumber(op)) {
+
+                var t1 = trees.pop()
+                var t2: MyTree<String>? = null
+
+                when (op) {
+                    "p" -> tree.setElement(tree.getRoot(), "+")
+                    "n" -> tree.setElement(tree.getRoot(), "-")
+                    "s" -> tree.setElement(tree.getRoot(), "sin")
+                    "c" -> tree.setElement(tree.getRoot(), "cos")
+                    "t" -> tree.setElement(tree.getRoot(), "tan")
+                    else -> {
+                        t2 = t1
+                        t1 = trees.pop()
+                    }
+                }
+
+                tree.attach(tree.getRoot(), t1, t2)
+            }
+
+            if (op == "$PI") {
+                tree.setElement(tree.getRoot(), "π")
+            }
+
+            trees.push(tree)
+        }
+
+        return trees.pop()
+    }
 
     private fun toInfix(postfix: ArrayList<String>): String {
 
@@ -25,7 +66,7 @@ class Calculator {
                 }
                 else -> {
 
-                    var o1 = stack.pop().toString()
+                    var o1 = stack.pop()
 
                     when {
                         c == "p" -> stack.push("(+$o1)")
@@ -34,7 +75,7 @@ class Calculator {
                         c == "c" -> stack.push(("cos($o1)"))
                         c == "t" -> stack.push(("tan($o1)"))
                         isOperator(c[0]) -> {
-                            var o2 = stack.pop().toString()
+                            var o2 = stack.pop()
                             if (o1[0] == '-') o1 = "($o1)"
                             if (o2[0] == '-') o2 = "($o2)"
                             stack.push("($o2 $c $o1)")
@@ -44,7 +85,7 @@ class Calculator {
             }
         }
 
-        val res = stack.pop()!!
+        val res = stack.pop()
 
         return if (res.first() == '(' && res.last() == ')')
             res.substring(1, res.length - 1)
@@ -72,10 +113,10 @@ class Calculator {
                     operands.push(c)
                 }
                 else -> {
-                    val o1 = operands.pop().toString()
+                    val o1 = operands.pop()
 
                     val o2 = if (isOperator(c[0]))
-                        operands.pop().toString()
+                        operands.pop()
                     else "0"
 
                     val res = calculate(c[0], o1, o2)
@@ -104,7 +145,7 @@ class Calculator {
         return if (steps)
             history
         else
-            operands.pop()!!.toDouble()
+            operands.pop().toDouble()
     }
 
     private fun calculate(operator: Char, operand1: String, operand2: String): Double {
@@ -223,7 +264,7 @@ class Calculator {
                 // arrange operators by priority
                 when {
                     isOperator(c) -> {
-                        while (!operators.isEmpty() && !precedence(c, operators.peek()!!)) {
+                        while (!operators.isEmpty() && !precedence(c, operators.peek())) {
                             result.add(operators.pop().toString())
                         }
 

@@ -1,26 +1,37 @@
 package com.example.calculator
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.core.widget.doAfterTextChanged
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.navigation.NavigationView
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navController : NavController
+    private lateinit var navView: NavigationView
+    private lateinit var input: EditText
 
+    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        if (this.supportActionBar != null)
-            this.supportActionBar!!.hide()
+        setContentView(R.layout.nav_activity_main)
 
         // calculator
         val calc = Calculator()
@@ -70,15 +81,12 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.btnCloseP)
         )
 
-        val input = findViewById<EditText>(R.id.input)
+        input = findViewById(R.id.input)
         val result = findViewById<EditText>(R.id.result)
 
         val btnEqual = findViewById<Button>(R.id.btnEqual)
         val btnAC = findViewById<Button>(R.id.btnAC)
         val btnDel = findViewById<Button>(R.id.btnDel)
-        val btnSteps = findViewById<View>(R.id.btnSteps)
-
-        btnSteps.visibility = INVISIBLE
 
         // disable keyboard
         input.showSoftInputOnFocus = false
@@ -93,9 +101,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        angles.forEach { digit ->
-            digit.setOnClickListener {
-                input.append(("${digit.text}("))
+        angles.forEach { angle ->
+            angle.setOnClickListener {
+                input.append(("${angle.text}("))
             }
         }
 
@@ -123,7 +131,6 @@ class MainActivity : AppCompatActivity() {
 
             if (cur.isEmpty()) {
                 result.setText("")
-                btnSteps.visibility = INVISIBLE
 
             } else {
 
@@ -134,16 +141,12 @@ class MainActivity : AppCompatActivity() {
                 try {
                     val ans = calc.calculate(cur, false) as Double
                     result.setText(("= " + calc.format(ans)))
-                    btnSteps.visibility = VISIBLE
-
 
                 } catch (ex: ArithmeticException) {
                     result.setText(ex.message)
-                    btnSteps.visibility = INVISIBLE
 
                 } catch (ex2: RuntimeException) {
                     result.setText("")
-                    btnSteps.visibility = INVISIBLE
                 }
 
                 input.setSelection(input.length())
@@ -165,19 +168,51 @@ class MainActivity : AppCompatActivity() {
                 try {
                     val ans = calc.calculate(cur, false) as Double
                     result.setText(("= " + calc.format(ans)))
-                    btnSteps.visibility = VISIBLE
 
                 } catch (ex: RuntimeException) {
                     result.setText(ex.message)
-                    btnSteps.visibility = INVISIBLE
                 }
             }
         }
 
-        btnSteps.setOnClickListener {
-            val i = Intent(this, StepsActivity::class.java)
-            i.putExtra("input", input.text.toString())
-            startActivity(i)
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById(R.id.nav_view)
+        navController = findNavController(R.id.nav_host)
+
+        setupActionBarWithNavController(navController, drawerLayout)
+        navView.setupWithNavController(navController)
+
+        navView.setNavigationItemSelectedListener(this)
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.drawer, menu)
+        return true
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp(drawerLayout) || super.onSupportNavigateUp()
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+
+            R.id.nav_steps -> {
+                val i = Intent(this, StepsActivity::class.java)
+                i.putExtra("input", input.text.toString())
+                startActivity(i)
+            }
+            R.id.nav_tree -> {
+                val i = Intent(this, TreeActivity::class.java)
+                i.putExtra("input", input.text.toString())
+                startActivity(i)
+            }
+            R.id.nav_dark_switch -> {
+                return false
+            }
         }
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return false
     }
 }
