@@ -2,16 +2,53 @@
     <!-- Base application theme. -->
     <style name="Theme.Calculator" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/dark1</item>
-        <item name="colorPrimaryVariant">@color/dark1</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
         <item name="colorOnPrimary">@color/dark1</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/dark1</item>
-        <item name="colorSecondaryVariant">@color/dark1</item>
-        <item name="colorOnSecondary">@color/dark1</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorSecondaryVariant">@color/accent</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="android:navigationBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimarySurface</item>
+        <item name="android:navigationBarColor" tools:targetApi="l">?attr/colorPrimarySurface</item>
+
         <!-- Customize your theme here. -->
+
     </style>
+
+    <style name="Theme.Calculator.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Calculator.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Calculator.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="darkButtons">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="backgroundTint">@color/primary_light</item>
+                <item name="android:textColor">@color/dark3</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">28sp</item>
+        <item name="layout_constrainedWidth">true</item>
+    </style>
+
+    <style name="goldButtons">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="backgroundTint">@color/accent</item>
+        <!--        <item name="android:textColor">#D81B60</item>-->
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">28sp</item>
+        <item name="layout_constrainedWidth">true</item>
+    </style>
+
+    <style name="textViews">
+        <item name="android:textColor">@color/dark1</item>
+    </style>
+
 </resources>

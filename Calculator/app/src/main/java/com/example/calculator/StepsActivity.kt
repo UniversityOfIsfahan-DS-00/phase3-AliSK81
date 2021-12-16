@@ -76,7 +76,7 @@ class StepsActivity : AppCompatActivity() {
 
         return SpannableStringBuilder()
             .color(
-                Color.argb(255, 255, 215, 0)
+                Color.argb(255, 255, 200, 0)
             )
             { underline { italic { bold { append("\n$s\n\n") } } } }
     }

@@ -4,12 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.GravityCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.drawerlayout.widget.DrawerLayout
@@ -24,9 +25,10 @@ import java.util.*
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var drawerLayout: DrawerLayout
-    private lateinit var navController : NavController
+    private lateinit var navController: NavController
     private lateinit var navView: NavigationView
     private lateinit var input: EditText
+    private lateinit var result: EditText
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +41,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // view settings
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         window.decorView.layoutDirection = View.LAYOUT_DIRECTION_LTR
+
 
         // set English locate
         val locale = Locale("en")
@@ -82,15 +85,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
 
         input = findViewById(R.id.input)
-        val result = findViewById<EditText>(R.id.result)
+        result = findViewById(R.id.result)
 
         val btnEqual = findViewById<Button>(R.id.btnEqual)
         val btnAC = findViewById<Button>(R.id.btnAC)
         val btnDel = findViewById<Button>(R.id.btnDel)
 
-        // disable keyboard
-        input.showSoftInputOnFocus = false
-        result.showSoftInputOnFocus = false
+
+        disableKeyboard()
 
 
         // events
@@ -135,8 +137,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             } else {
 
                 cur = input.text.toString()
-                result.textSize = 22F
-                input.textSize = 30F
 
                 try {
                     val ans = calc.calculate(cur, false) as Double
@@ -153,21 +153,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
-        input.setOnClickListener {
-            result.textSize = 22F
-            input.textSize = 30F
-        }
-
         btnEqual.setOnClickListener {
 
             val cur = input.text.toString()
-            result.textSize = 30F
-            input.textSize = 22F
 
             if (cur.isNotEmpty()) {
                 try {
                     val ans = calc.calculate(cur, false) as Double
-                    result.setText(("= " + calc.format(ans)))
+                    input.setText(calc.format(ans))
 
                 } catch (ex: RuntimeException) {
                     result.setText(ex.message)
@@ -184,11 +177,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         navView.setNavigationItemSelectedListener(this)
 
+        initThemeSwitch()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.drawer, menu)
-        return true
+
+    private fun disableKeyboard() {
+        input.showSoftInputOnFocus = false
+        result.showSoftInputOnFocus = false
+    }
+
+    private fun initThemeSwitch() {
+        val menu = navView.menu.findItem(R.id.nav_dark_switch)
+        val darkThemeSwitch = menu.actionView as SwitchCompat
+
+        darkThemeSwitch.setOnCheckedChangeListener { _, checked ->
+            AppCompatDelegate.setDefaultNightMode(
+                if (checked) {
+                    AppCompatDelegate.MODE_NIGHT_YES
+                } else {
+                    AppCompatDelegate.MODE_NIGHT_NO
+                }
+            )
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -215,4 +225,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.closeDrawer(GravityCompat.START)
         return false
     }
+
 }

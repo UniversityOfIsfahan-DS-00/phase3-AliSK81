@@ -5,10 +5,25 @@
       <map>
         <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.165234375" />
         <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2203125" />
-        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/layout/activity_main.xml" value="0.18" />
-        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/layout/activity_steps.xml" value="0.22" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/drawable/ic_moon.xml" value="0.165234375" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/drawable/ic_solution.xml" value="0.165234375" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/drawable/ic_tree.xml" value="0.165234375" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/drawable/rounded_corner.xml" value="0.165234375" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/drawable/side_nav_bar.xml" value="0.165234375" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/layout/activity_steps.xml" value="0.9" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/layout/activity_tree.xml" value="0.13831967213114754" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/layout/app_bar_drawer.xml" value="0.13831967213114754" />
         <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/layout/buttons.xml" value="0.1" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/layout/content_drawer.xml" value="0.13831967213114754" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/layout/fragment_home.xml" value="0.13831967213114754" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/layout/nav_activity_main.xml" value="0.13831967213114754" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/layout/nav_header_drawer.xml" value="0.13831967213114754" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/layout/switch_item.xml" value="0.1290983606557377" />
         <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/layout/temp.xml" value="0.18" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/layout/tree_view_node.xml" value="0.33" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/menu/activity_drawer_drawer.xml" value="0.5" />
+        <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/menu/drawer.xml" value="0.153125" />
         <entry key="..\:/Code/Git/DS/phase3-AliSK81/Calculator/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.165234375" />
       </map>
     </option>

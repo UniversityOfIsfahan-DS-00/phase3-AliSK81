@@ -9,9 +9,19 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dark1">#0A0A0A</color>
     <color name="dark2">#131313</color>
+    <color name="dark3">#171717</color>
     <color name="orange1">#ffa700</color>
     <color name="orange2">#FFB52E</color>
     <color name="blue1">#008080</color>
+    <color name="yellow">#FFEB3B</color>
 
+    <color name="primary">#FF9800</color>
+    <color name="primary_dark">#F57C00</color>
+    <color name="primary_light">#F8F8FF</color>
+    <color name="accent">#FF9800</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#212121</color>
+    <color name="divider">#BDBDBD</color>
 
 </resources>
